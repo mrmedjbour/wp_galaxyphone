@@ -4,6 +4,34 @@
  Enqueue scripts and styles
 */
 
+if( !function_exists('gp_theme_setup') ){
+    /* Theme setup */
+    function gp_theme_setup(){
+        load_theme_textdomain('galaxyphone', get_template_directory() . '/languages');
+        add_theme_support('title-tag');
+        add_theme_support('post-thumbnails');
+        add_theme_support( 'html5',
+            array(
+                'comment-list',
+                'comment-form',
+                'search-form',
+                'gallery',
+                'caption'
+            )
+        );
+        add_theme_support('customize-selective-refresh-widgets');
+        add_theme_support('responsive-embeds');
+
+        register_nav_menus(
+            array(
+                'primary' => esc_html__('Primary Menu', 'galaxyphone'),
+            )
+        );
+    }
+}
+
+add_action('after_setup_theme','gp_theme_setup');
+
 function gp_assets() {
 
     // Enqueue CSS Files

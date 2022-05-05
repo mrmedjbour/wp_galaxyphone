@@ -9,7 +9,7 @@
  */
 ?>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html <?php language_attributes(); ?> dir="ltr">
 
 <head>
     <meta charset="utf-8">
@@ -21,40 +21,25 @@
 
 </head>
 
-<body class="blog">
+<body <?php body_class(); ?> >
 
 <div id="top-navigation">
     <div class="container">
         <div class="row justify-content-end">
             <div class="col-md-6">
-                <nav class="main-menu">
-                    <ul class="top-menu d-flex flex-row navigation top-menu justify-content-end list-unstyled">
-                        <li class="menu-item"><a href="index.html">Home</a></li>
 
-                        <li class="menu-item menu-item-has-children"><a href="index.html">Blog</a>
-
-                            <ul class="sub-menu">
-                                <li class="menu-item"><a href="single.html">Single post</a></li>
-                                <li class="menu-item"><a href="widgets.html">Widgets</a></li>
-                                <li class="menu-item"><a href="index.html">Contact</a></li>
-
-                                <li class="menu-item menu-item-has-children"><a href="index.html">Blog</a>
-                                    <ul class="sub-menu">
-                                        <li class="menu-item"><a href="index.html">Blog</a></li>
-                                        <li class="menu-item"><a href="index.html">FAQ</a></li>
-                                        <li class="menu-item"><a href="index.html">Contact</a></li>
-                                    </ul>
-                                </li>
-
-                            </ul>
-
-                        </li>
-
-                        <li class="menu-item"><a href="widgets.html">Widgets</a></li>
-                        <li class="menu-item"><a href="index.html">Contact</a></li>
-                        <li class="menu-item special-menu"><a href="index.html">Join</a></li>
-                    </ul>
-                </nav>
+                <?php
+                    wp_nav_menu(
+                            array(
+                                'theme_location' => 'primary', // as registered in functions.php
+                                'depth' => 3, // as set in css depth of menu
+                                'container' => 'nav', // html wrapper of the menu ul
+                                'container_class' => 'main-menu',
+                                'menu_class' => 'top-menu d-flex flex-row navigation top-menu justify-content-end list-unstyled',
+                                'fallback_cb' => false // if primary menu not created then don't show nothing
+                            )
+                    );
+                ?>
 
                 <button type="button" class="navbar-open">
                     <i class="mobile-nav-toggler flaticon flaticon-menu"></i>
